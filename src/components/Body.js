@@ -542,7 +542,9 @@ const Body = () => {
                         // Filter logic here 
                         const filterList = resList.filter((res) => res.info.avgRating > 4)
                         console.log(filterList)
-                        setlistOfResturants(filterList)
+                        // setlistOfResturants(filterList)
+                        setFilteredRestaurant(filterList)
+
                     }}>Top Rated Restaurants</button>
             </div>
             <div className="res-container">
