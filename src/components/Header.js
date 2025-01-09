@@ -5,7 +5,6 @@ import { LOGO_URL } from '../utils/constants';
 // Named Export 
 const Header = () => {
     const [btnNameReact, setBtnNameReact] = useState("Login")
-    console.log("Header Render")
 
     // If no dependency array => useEffect is called on every render
     // If dependency array is empty = [] => useEffect is called on initial render (just once)
