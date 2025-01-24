@@ -536,11 +536,11 @@ const Body = () => {
     // ]
     return listOfResturants.length === 0 ? (<Shimmer />) : (
         <div className="body">
-            <div className="filter">
-                <div className="search">
-                    <input type="text" className="search-box" value={searchText} onChange={(e) => { setSearchText(e.target.value) }} />
+            <div className="filter flex">
+                <div className="search m-4 p-4">
+                    <input type="text" className="search-box border border-solid border-black" value={searchText} onChange={(e) => { setSearchText(e.target.value) }} />
 
-                    <button onClick={() => {
+                    <button className='px-4 py-2 m-4 bg-green-100 rounded-lg' onClick={() => {
                         console.log(searchText)
 
                         const filterResturant = listOfResturants.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()))
@@ -551,18 +551,21 @@ const Body = () => {
 
                     }}>Search</button>
                 </div>
-                <button className="filter-btn"
-                    onClick={() => {
+                <div className="search m-4 p-4 flex items-center rounded-lg">
+                    <button className="filter-btn px-4 py-2 m-4 bg-gray-500"
+                        onClick={() => {
 
-                        // Filter logic here 
-                        const filterList = resList.filter((res) => res.info.avgRating > 4)
-                        console.log(filterList)
-                        // setlistOfResturants(filterList)
-                        setFilteredRestaurant(filterList)
+                            // Filter logic here 
+                            const filterList = resList.filter((res) => res.info.avgRating > 4)
+                            console.log(filterList)
+                            // setlistOfResturants(filterList)
+                            setFilteredRestaurant(filterList)
 
-                    }}>Top Rated Restaurants</button>
+                        }}>Top Rated Restaurants</button>
+                </div>
+
             </div>
-            <div className="res-container">
+            <div className="res-container flex flex-wrap items-center justify-center">
                 {/* how to make dynamic cards  */}
                 {/* passing the props like that  */}
                 {/* <RestaurantCard resName={resList[0]} />
@@ -582,9 +585,6 @@ const Body = () => {
                         <Link key={restaurant?.info.id} to={"/restaurants/" + restaurant?.info.id}>         <RestaurantCard resData={restaurant} />
                         </Link>
                     ))
-
-
-
 
                 }
             </div>
