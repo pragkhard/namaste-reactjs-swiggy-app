@@ -3,6 +3,8 @@ import RestaurantCard from "./RestaurantCard"
 import resList from "../utils/mockData"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router"
+import useOnlineStatus from '../utils/useOnlineStatus';
+
 
 const Body = () => {
     const [listOfResturants, setlistOfResturants] = useState([]);
@@ -31,6 +33,18 @@ const Body = () => {
         setlistOfResturants(json?.data?.cards[1]?.card?.card.gridElements?.infoWithStyle?.restaurants)
         setFilteredRestaurant(json?.data?.cards[1]?.card?.card.gridElements?.infoWithStyle?.restaurants)
     }
+
+    // use the custom hook here 
+    const onlineStatus = useOnlineStatus();
+
+    if (onlineStatus === false)
+        return (
+            <h1>
+                Looks like you're offline!! Please check your internet connection;
+            </h1>
+        );
+
+
     // Conditional rendering 
     // if (listOfResturants.length == 0) {
     //     return <h1>Loading...</h1>
