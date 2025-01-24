@@ -20,7 +20,7 @@ const UserFunctional = ({ name }) => {
     }, [])
 
     return (
-        <div className="user-card">
+        <div className="user-card m-4 p-4 bg-gray-100 rounded-lg">
             <h1>Count Function- {count}</h1>
             <h1>Count2 Function- {count2}</h1>
             <h2>Name:{name}</h2>
