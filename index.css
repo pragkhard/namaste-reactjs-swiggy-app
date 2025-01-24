@@ -1,52 +1,55 @@
-.header {
+@import "tailwindcss";
+
+
+/* .header {
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
-}
+} */
 
-.logo {
+/* .logo {
     width: 106px;
-}
+} */
 
-.nav-items {
+/* .nav-items {
     padding: 0px 20px;
-}
+} */
 
-.nav-items>ul {
+/* .nav-items>ul {
     display: flex;
     font-size: 24px;
     list-style-type: none;
-}
+} */
 
-.nav-items>ul>li {
+/* .nav-items>ul>li {
     padding: 10px;
     margin: 10px;
-}
+} */
 
-.res-container {
+/* .res-container {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: center; */
-}
+   
+} */
 
-.res-card {
+/* .res-card {
     margin: 5px;
     padding: 10px;
     width: 200px;
     height: 360px;
 
-}
+} */
 
-h4 {
+/* h4 {
     overflow-wrap: break-word;
 }
 
 .res-card:hover {
     cursor: pointer;
     border: 1px solid black;
-}
+} */
 
-.search {
+/* .search {
     padding: 10px;
 }
 
@@ -56,9 +59,9 @@ h4 {
     height: 120px;
     max-height: 100%;
     margin: 5px;
-}
+} */
 
-.filter-btn {
+/* .filter-btn {
     margin: 10px;
     cursor: pointer;
 }
@@ -66,9 +69,9 @@ h4 {
 .shimmer-container {
     display: flex;
     flex-wrap: wrap;
-}
+} */
 
-.shimmer-card {
+/* .shimmer-card {
     margin: 20px;
     width: 200px;
     height: 200px;
@@ -82,9 +85,9 @@ h4 {
 
 .filter{
   display: flex;  
-}
+} */
 
-.user-card{
+/* .user-card{
     padding: 10px;
     border: 1px solid black;
-}
+} */
