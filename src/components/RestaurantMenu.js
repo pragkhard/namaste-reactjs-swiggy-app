@@ -4,6 +4,8 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
 // import { MENU_API } from "../utils/constants";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 
 const RestaurantMenu = () => {
@@ -13,11 +15,16 @@ const RestaurantMenu = () => {
 
     // Destructuring
     const { resId } = useParams()
-    console.log("Destructuring resId", resId)
+    // console.log("Destructuring resId", resId)
 
+    // Accordian hide /show functionality 
+    const [showIndex, setShowIndex] = useState(null);
 
     // create custom hook
     const resInfo = useRestaurantMenu(resId)
+
+    //Props Drilling 
+    const dummy = "Dummy Data";
 
 
     // useEffect(() => {
@@ -42,25 +49,45 @@ const RestaurantMenu = () => {
     if (resInfo == null) return <Shimmer />
 
     const { name, cuisines, costForTwo } = resInfo?.cards[2]?.card?.card?.info;
+
+
     const { itemCards } = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card;
 
-    console.log(itemCards)
+    // console.log("itemCardsgg", resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards.card[4].card.card)
+
+
+    // console.log(itemCards)
+    // console.log("itemCards", resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card)
+
+    const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c => c.card?.["card"]?.["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
+
+    // console.log("categories", categories)
 
     return (
-        <div>
-            <h1>RESTAURANT</h1>
-            <h1>{name}</h1>
-            <p>{cuisines?.join(", ")}- {costForTwo}</p>
-            <h2>Menu</h2>
-            <ul>
-                {itemCards.map(item => <li key={item.card.info.id}>{item.card.info.name}- {"Rs."} {item.card.info.price / 100 || item.card.info.defaultPrice / 100}</li>)}
+        <div className="text-center">
+            <h1 className="font-bold my-6 text-2xl">{name}</h1>
+            {/* <p className="font-bold text-lg">{cuisines?.join(", ")}- {costForTwo}</p> */}
+            {/* <ul>
+                {itemCards.map(item => <li key={item.card.info.id}>{item.card.info.name}- {"Rs."} {item.card.info.price / 100 || item.card.info.defaultPrice / 100}</li>)} */}
 
-                {/* <li>{itemCards[0].card.info.name}</li>
+            {/* <li>{itemCards[0].card.info.name}</li>
                 <li>{itemCards[1].card.info.name}</li>
                 <li>{itemCards[2].card.info.name}</li>
                 <li>Burgers</li>
                 <li>Diet Cake</li> */}
-            </ul>
+            {/* </ul> */}
+
+            {/* categories accordions */}
+            {categories.map((category, index) => (
+                <RestaurantCategory
+                    key={category?.card?.card.title}
+                    data={category?.card?.card}
+                    // showItems={false}
+
+                    // Implement the lifting state up
+                    showItems={index === showIndex ? true : false}
+                    setShowIndex={() => setShowIndex(index)}
+                />))}
         </div>
     )
 }
