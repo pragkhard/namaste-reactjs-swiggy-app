@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import RestaurantCard from "./RestaurantCard"
+import RestaurantCard, { withPromtedLabel } from "./RestaurantCard"
 import resList from "../utils/mockData"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router"
@@ -11,8 +11,12 @@ const Body = () => {
     const [filteredRestaurant, setFilteredRestaurant] = useState([]);
     const [searchText, setSearchText] = useState("");
 
+    // Higher order component
+    const RestaurantCardPromoted = withPromtedLabel(RestaurantCard);
+
     //whenever state variable update, react triggers a reconcilation cycle(re-renders the component)
-    console.log("Body Rendered")
+    // console.log("Body Rendered")
+    // console.log("Body Rendered", listOfResturants)
 
 
     useEffect(() => {
@@ -581,8 +585,22 @@ const Body = () => {
 
                     // filteredRestaurant.map((restaurant) => (<RestaurantCard key={restaurant.info.id} resData={restaurant} />))
 
+                    // filteredRestaurant.map((restaurant) => (
+                    //     <Link key={restaurant?.info.id} to={"/restaurants/" + restaurant?.info.id}>         <RestaurantCard resData={restaurant} />
+                    //     </Link>
+                    // ))
+
+
+                    // With Higher order component logic 
                     filteredRestaurant.map((restaurant) => (
-                        <Link key={restaurant?.info.id} to={"/restaurants/" + restaurant?.info.id}>         <RestaurantCard resData={restaurant} />
+                        <Link key={restaurant?.info.id} to={"/restaurants/" + restaurant?.info.id}>
+                            {/* If the resturant is promoted then add a promoted label to it */}
+
+                            {
+                                restaurant?.info.isOpen
+                                    ? <RestaurantCardPromoted resData={restaurant} /> : <RestaurantCard resData={restaurant} />
+                            }
+
                         </Link>
                     ))
 
