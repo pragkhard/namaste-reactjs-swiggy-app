@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
+const RestaurantCategory = ({ data, showItems, setShowIndex, dummy }) => {
     // console.log("data", data)
     // const [showItems, setShowItems] = useState(false);
 
@@ -27,7 +27,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
                 </div>
                 {/* Accordian body  */}
                 {/* <ItemList items={data.itemCards} /> */}
-                {showItems && <ItemList items={data.itemCards} />}
+                {showItems && <ItemList items={data.itemCards} dummy={dummy} />}
             </div>
 
         </div>
