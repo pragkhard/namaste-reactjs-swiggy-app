@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import RestaurantCard, { withPromtedLabel } from "./RestaurantCard"
 import resList from "../utils/mockData"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router"
 import useOnlineStatus from '../utils/useOnlineStatus';
+import UserContext from "../utils/UserContext"
+
 
 
 const Body = () => {
@@ -537,7 +539,11 @@ const Body = () => {
     //             "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
     //         }
     //     },
-    // ]
+    // ].
+
+    // modify the user context 
+    const { loggedInUser, setUserName } = useContext(UserContext)
+
     return listOfResturants.length === 0 ? (<Shimmer />) : (
         <div className="body">
             <div className="filter flex">
@@ -566,6 +572,16 @@ const Body = () => {
                             setFilteredRestaurant(filterList)
 
                         }}>Top Rated Restaurants</button>
+                </div>
+
+                {/* modify the user context using inputbox */}
+                <div className="search m-4 p-4 flex items-center">
+                    <label>UserName :  </label>
+                    <input
+                        className="border border-black p-2"
+                        value={loggedInUser}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
                 </div>
 
             </div>
