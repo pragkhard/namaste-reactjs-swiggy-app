@@ -78,6 +78,7 @@ const RestaurantMenu = () => {
             {/* </ul> */}
 
             {/* categories accordions */}
+            {/* controlled component */}
             {categories.map((category, index) => (
                 <RestaurantCategory
                     key={category?.card?.card.title}
@@ -87,6 +88,7 @@ const RestaurantMenu = () => {
                     // Implement the lifting state up
                     showItems={index === showIndex ? true : false}
                     setShowIndex={() => setShowIndex(index)}
+                    dummy={dummy}
                 />))}
         </div>
     )
