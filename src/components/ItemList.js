@@ -1,6 +1,7 @@
 import { CDN_URL } from "../utils/constants";
-const ItemList = ({ items }) => {
+const ItemList = ({ items, dummy }) => {
     // console.log("items", items)
+    // console.log(dummy)
     return (
         <div>
             {/* Category Item */}
